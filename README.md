@@ -21,7 +21,8 @@ The library class provides the following methods:
 
 ```
 Iges.write(self, filename=None)
-    - save models to filename or print to standard output if ungiven
+    - filename is the file to write the model.  If no filename
+      is given the model will be printed to standard output.
 Iges.line(self, points, origin=(0,0,0))
     - points is given as a list [ax, ay, az, bx, by, bz]
 Iges.xzplane(self, w, h, origin=(0,0,0))
@@ -29,7 +30,7 @@ Iges.yzplane(self, w, h, origin=(0,0,0))
 Iges.plane(self, w, h, origin=(0,0,0))
     - w, h is the width and height of the plane in 2D
 Iges.cube(self, w, l, h, origin=(0,0,0))
-    - w, l, h is the width, length and height of the plane in 3D
+    - w, l, h is the width, length and height of the cube in 3D
 ```
 
 See the files microstrip.py and patch.py for examples.
