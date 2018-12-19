@@ -34,7 +34,7 @@ Iges.cube(self, w, l, h, origin=(0,0,0))
 ```
 
 See the files microstrip.py and patch.py for examples.
-The following code for example will create a PCB board:
+The following code will create a PCB board:
 
 
 ```
