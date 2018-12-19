@@ -10,9 +10,8 @@ IGES files.
 
 ![Image of a patch antenna](antenna.png)
 
-The DXF format, though it is a well known
-format and works in 3D, does not really support 
-models for solids, like a plane much less a cube.  
+The DXF format does not really support
+models for solids, like a plane much less a cube.
 DXF can be imported into SONNET however as 2D.
 
 igesswrite supports the following models: 1) lines,
