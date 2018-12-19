@@ -12,7 +12,7 @@ IGES files.
 
 The DXF format unfortunately does not really support
 solid models so is not widely used for RF simulation.
-DXF however be imported into SONNET as a 2D model.
+DXF however can be imported into SONNET as a 2D model.
 
 Igeswrite supports the following models: 1) lines,
 2) xz planes, 3) yz planes, 4) xz planes, and 5) cubes.
