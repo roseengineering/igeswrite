@@ -3,7 +3,7 @@
 
 igeswrite is a Python 3 library for creating 
 IGES files.  IGES is a standard for exchanging solid
-among other models first published in 1980.  
+among other models first published in 1980.
 ![https://en.wikipedia.org/wiki/IGES].  Most simulation
 RF software like FEKO, HFSS, and CTS support importing
 IGES files.   
