@@ -8,7 +8,7 @@ among other models first published in 1980.
 RF software like FEKO, HFSS, and CTS support importing
 IGES files.   
 
-![antenna.png]
+![Image of a patch antenna](antenna.png)
 
 The DXF format, though it is a well known
 format and works in 3D, does not really support 
@@ -55,7 +55,7 @@ iges.write()
 ```
 
 This creates the following model:
-![board.png]
+![Image of a PCB board](board.png)
 
 
 To add a patch antenna with microstrip, including the connection 
@@ -87,20 +87,4 @@ iges.xzplane(zw, -h/2, origin=(-zw/2, -d1, -h/2))
 iges.write()
 ```
 
-![copper.png]
-
-
-
-
-
-
-board.png
-copper.png
-gitignore
-igeswrite.py
-makefile
-microstrip.py
-notes.txt
-patch.py
-README.md
-readme.py
+![Image of the copper from a patch antenna](copper.png)
