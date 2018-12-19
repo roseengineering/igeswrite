@@ -21,8 +21,8 @@ The library class provides the following methods:
 
 ```
 Iges.write(self, filename=None)
-    - filename is the file to write the model.  If no filename
-      is given the model will be printed to standard output.
+    - filename is the name of the file to write the model to.  If no 
+      filename is given the model will be printed to standard output.
 Iges.line(self, points, origin=(0,0,0))
     - points is given as a list [ax, ay, az, bx, by, bz]
 Iges.xzplane(self, w, h, origin=(0,0,0))
