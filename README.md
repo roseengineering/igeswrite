@@ -52,7 +52,6 @@ iges.cube(bw, bl, -h, origin=(-cx, -cy, 0))
 iges.write()
 ```
 
-This creates the following model:
 ![Image of a PCB board](board.png)
 
 
