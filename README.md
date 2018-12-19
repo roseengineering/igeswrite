@@ -10,8 +10,8 @@ IGES files.
 
 ![Image of a patch antenna](antenna.png)
 
-The DXF format unfortunately does not really support
-solid models so is not widely used for RF simulation.
+Since the DXF format unfortunately does not really support
+solid models, it is not widely used for RF simulation.
 DXF however can be imported into SONNET as a 2D model.
 
 Igeswrite supports the following models: 1) lines,
