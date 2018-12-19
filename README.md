@@ -35,7 +35,7 @@ Iges.cube(self, w, l, h, origin=(0,0,0))
     - w, l, h is the width, length and height of the plane in 3D
 ```
 
-For example to create a PCB board try:
+The following code for example will create a PCB board:
 
 
 ```
