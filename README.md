@@ -19,7 +19,7 @@ Igeswrite supports the following models: 1) lines,
 
 The following are the methods provided by the
 library class.  Use the write() method to save your work 
-to a file or print it to standard output.  See the 
+to a file or to print it to standard output.  See the 
 files microstrip.py and patch.py for examples.
 
 ```
