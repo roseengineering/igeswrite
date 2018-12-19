@@ -17,10 +17,7 @@ DXF however can be imported into SONNET as a 2D model.
 Igeswrite supports the following models: 1) lines,
 2) xz planes, 3) yz planes, 4) xz planes, and 5) cubes.
 
-The following are the methods provided by the
-library class.  Use the write() method to save your work 
-to a file or to print it to standard output.  See the 
-files microstrip.py and patch.py for examples.
+The library class provides the following methods:
 
 ```
 Iges.write(self, filename=None)
@@ -35,6 +32,7 @@ Iges.cube(self, w, l, h, origin=(0,0,0))
     - w, l, h is the width, length and height of the plane in 3D
 ```
 
+See the files microstrip.py and patch.py for examples.
 The following code for example will create a PCB board:
 
 
