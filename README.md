@@ -55,12 +55,10 @@ iges.write()
 ![Image of a PCB board](board.png)
 
 
-To add a patch antenna with microstrip, including the connection 
+To add a patch antenna, with microstrip and connection 
 to ground for the port, to the board use:
 
 ```
-iges = Iges()
-
 l = 29.2   # length of patch
 w = 50.8   # width of patch
 dw = 1.3   # width of quarter wave line
@@ -70,6 +68,7 @@ de = 0.5   # offset from edge
 ext = h * .44 * (1 - dw / zw) 
 
 # patch antenna
+iges = Iges()
 iges.plane(w, l, origin=(-w/2, -l/2, 0))
 
 # transmission line
