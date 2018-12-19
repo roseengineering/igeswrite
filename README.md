@@ -45,9 +45,9 @@ h = 1.6    # PCB board thickness in mm
 
 cx = bw / 2
 cy = bl / 2
-iges = Iges()
 
 # board
+iges = Iges()
 iges.cube(bw, bl, -h, origin=(-cx, -cy, 0))
 iges.write()
 ```
