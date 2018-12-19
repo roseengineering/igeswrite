@@ -1,7 +1,7 @@
 
 ## igeswrite
 
-igeswrite is a Python 3 library for creating
+Igeswrite is a Python 3 library for creating
 IGES files.  IGES is a standard for exchanging solid models.
 It was first published in 1980,
 https://en.wikipedia.org/wiki/IGES.  Most RF simulation
@@ -10,11 +10,11 @@ IGES files.
 
 ![Image of a patch antenna](antenna.png)
 
-The DXF format does not really support
-models for solids, like a plane much less a cube.
-DXF can be imported into SONNET however as 2D.
+The DXF format unfortunately does not really support
+solid models so is not widely used for RF simulation.
+DXF however be imported into SONNET as a 2D model.
 
-igesswrite supports the following models: 1) lines,
+Igeswrite supports the following models: 1) lines,
 2) xz planes, 3) yz planes, 4) xz planes, and 5) cubes.
 
 The following are the methods provided by the
