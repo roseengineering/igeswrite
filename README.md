@@ -25,11 +25,11 @@ Iges.write(self, filename=None)
       filename is given the model will be printed to standard output.
 Iges.line(self, points, origin=(0,0,0))
     - points is given as a list [ax, ay, az, bx, by, bz]
-Iges.xzplane(self, w, h, origin=(0,0,0))
-Iges.yzplane(self, w, h, origin=(0,0,0))
-Iges.plane(self, w, h, origin=(0,0,0))
+Iges.xzplane(self, (w, h), origin=(0,0,0))
+Iges.yzplane(self, (w, h), origin=(0,0,0))
+Iges.plane(self, (w, h), origin=(0,0,0))
     - w, h is the width and height of the plane in 2D
-Iges.cube(self, w, l, h, origin=(0,0,0))
+Iges.cube(self, (w, l, h), origin=(0,0,0))
     - w, l, h is the width, length and height of the cube in 3D
 ```
 
@@ -48,7 +48,7 @@ cy = bl / 2
 
 # board
 iges = Iges()
-iges.cube(bw, bl, -h, origin=(-cx, -cy, 0))
+iges.cube((bw, bl, -h), origin=(-cx, -cy, 0))
 iges.write()
 ```
 
@@ -69,17 +69,17 @@ ext = h * .44 * (1 - dw / zw)
 
 # patch antenna
 iges = Iges()
-iges.plane(w, l, origin=(-w/2, -l/2, 0))
+iges.plane((w, l), origin=(-w/2, -l/2, 0))
 
 # transmission line
 d0 = l/2 + dl + ext
 d1 = cy - de
-iges.plane(dw, dl + ext, origin=(-dw/2, -d0, 0))
-iges.plane(zw, d1 - d0, origin=(-zw/2, -d1, 0))
+iges.plane((dw, dl + ext), origin=(-dw/2, -d0, 0))
+iges.plane((zw, d1 - d0), origin=(-zw/2, -d1, 0))
 
 # edge port
-iges.xzplane(zw, -h/2, origin=(-zw/2, -d1, 0))
-iges.xzplane(zw, -h/2, origin=(-zw/2, -d1, -h/2))
+iges.xzplane((zw, -h/2), origin=(-zw/2, -d1, 0))
+iges.xzplane((zw, -h/2), origin=(-zw/2, -d1, -h/2))
 iges.write()
 ```
 

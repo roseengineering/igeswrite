@@ -106,7 +106,8 @@ class Iges:
         points = self.pos(points, origin)
         return self.entity(110, points, child=child)
 
-    def xzplane(self, w, h, origin=(0,0,0)):        
+    def xzplane(self, size, origin=(0,0,0)):        
+        w, h = size
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -120,7 +121,8 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def yzplane(self, w, h, origin=(0,0,0)):        
+    def yzplane(self, size, origin=(0,0,0)):        
+        w, h = size
         directrix = self.line([0,0,0,0,w,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -134,7 +136,8 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def plane(self, w, h, origin=(0,0,0)):        
+    def plane(self, size, origin=(0,0,0)):        
+        w, h = size
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1] + h, origin[2]], child=True)
@@ -148,13 +151,14 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def cube(self, w, l, h, origin=(0,0,0)):
+    def cube(self, size, origin=(0,0,0)):
+        w, l, h = size
         x, y, z = origin
-        self.plane(w, l, origin=origin)
-        self.plane(w, l, origin=(x, y, z + h))
-        self.yzplane(l, h, origin=origin)
-        self.yzplane(l, h, origin=(x + w, y, z))
-        self.xzplane(w, h, origin=origin)
-        self.xzplane(w, h, origin=(x, y + l, z))
+        self.plane((w, l), origin=origin)
+        self.plane((w, l), origin=(x, y, z + h))
+        self.yzplane((l, h), origin=origin)
+        self.yzplane((l, h), origin=(x + w, y, z))
+        self.xzplane((w, h), origin=origin)
+        self.xzplane((w, h), origin=(x, y + l, z))
 
 
