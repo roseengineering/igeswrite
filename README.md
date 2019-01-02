@@ -93,8 +93,11 @@ For example ![patch_svg.py](patch_svg.py) generates the following svg file:
 ![](patch_svg.svg)
 
 After unioning all rectangles in this file in inkscape to remove the line crossings,
-I got the following result for vinyl cutting.  (You can use stroke to path
-to remove the fill and see the cutting pattern.)
+I got the following result for vinyl cutting.  
 
-![](release.svg)
+![](union.svg)
+
+You can use Path > Stroke to Path in Inkscape to remove the fill and see the cutting pattern.
+
+![](stroke.svg)
 
