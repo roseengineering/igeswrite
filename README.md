@@ -29,7 +29,7 @@ Iges.xzplane(self, (w, h), origin=(0,0,0))
 Iges.yzplane(self, (w, h), origin=(0,0,0))
 Iges.plane(self, (w, h), origin=(0,0,0))
     - w, h is the width and height of the plane in 2D
-Iges.cube(self, (w, l), h, origin=(0,0,0))
+Iges.cube(self, (w, l, h), origin=(0,0,0))
     - w, l, h is the width, length and height of the cube in 3D
 ```
 
@@ -48,7 +48,7 @@ cy = bl / 2
 
 # board
 iges = Iges()
-iges.cube((bw, bl), -h, origin=(-cx, -cy, 0))
+iges.cube((bw, bl, -h), origin=(-cx, -cy, 0))
 iges.write()
 ```
 
