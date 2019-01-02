@@ -8,7 +8,7 @@ https://en.wikipedia.org/wiki/IGES.  Most RF simulation
 software like FEKO, HFSS, and CTS support importing
 IGES files.   
 
-![Image of a patch antenna](antenna.png)
+![](antenna.png)
 
 Since the DXF format unfortunately does not really support
 solid models, it is not widely used for RF simulation.
@@ -52,7 +52,7 @@ iges.cube((bw, bl, -h), origin=(-cx, -cy, 0))
 iges.write()
 ```
 
-![Image of a PCB board](board.png)
+![](board.png)
 
 
 To add a patch antenna, with microstrip and connection 
@@ -83,4 +83,18 @@ iges.xzplane((zw, -h/2), origin=(-zw/2, -d1, -h/2))
 iges.write()
 ```
 
-![Image of the copper from a patch antenna](copper.png)
+![](copper.png)
+
+## boardsvg
+
+The boardsvg library generates svg files for say an vinyl cutter.
+For example ![](patch_svg.py) generates the following svg file:
+
+![](patch_svg.svg)
+
+After unioning all rectangles in this file in inkscape to remove the line crossings,
+I got the following result for vinyl cutting.  (You can use stroke to path
+to remove the fill and see the cutting pattern.)
+
+![](release.svg)
+
