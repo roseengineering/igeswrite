@@ -88,7 +88,7 @@ iges.write()
 ## boardsvg
 
 The boardsvg library generates svg files for say an vinyl cutter.
-For example ![](patch_svg.py) generates the following svg file:
+For example ![patch_svg.py](patch_svg.py) generates the following svg file:
 
 ![](patch_svg.svg)
 
