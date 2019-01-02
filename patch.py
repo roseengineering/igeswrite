@@ -18,7 +18,7 @@ ext = h * .44 * (1 - dw / zw)
 
 # board
 iges = Iges()
-iges.cube((bw, bl, -h), origin=(-cx, -cy, 0))
+iges.cube((bw, bl), -h, origin=(-cx, -cy, 0))
 
 # patch
 iges.plane((w, l), origin=(-w/2, -l/2, 0))

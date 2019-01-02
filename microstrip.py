@@ -24,7 +24,7 @@ iges.xzplane((zw, -h/2), origin=(-zw/2, cy - d, 0))
 iges.xzplane((zw, -h/2), origin=(-zw/2, cy - d, -h/2))
 
 # region and ground plane
-iges.cube((bw, bl, -h), origin=(-cx, -cy, 0))
+iges.cube((bw, bl), -h, origin=(-cx, -cy, 0))
 
 # write result
 iges.write("microstrip.igs")

@@ -151,8 +151,8 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def cube(self, size, origin=(0,0,0)):
-        w, l, h = size
+    def cube(self, size, h, origin=(0,0,0)):
+        w, l = size
         x, y, z = origin
         self.plane((w, l), origin=origin)
         self.plane((w, l), origin=(x, y, z + h))
