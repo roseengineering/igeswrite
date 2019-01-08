@@ -136,8 +136,12 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def plane(self, size, origin=(0,0,0)):        
+    def plane(self, size, origin=(0,0,0), centerx=False, centery=False):        
+        x, y, z = origin
         w, h = size
+        if centerx: x -= w / 2
+        if centery: y -= h / 2
+        origin = (x, y, z)
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1] + h, origin[2]], child=True)
