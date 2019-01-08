@@ -33,7 +33,7 @@ class Board:
         w, h = size
         x, y = origin
         if centerx: x -= w / 2
-        if centery: x -= h / 2
+        if centery: y -= h / 2
         origin = x, y
         self.poly([(0, 0), (w, 0), (w, h), (0, h)], origin)
 
