@@ -29,9 +29,12 @@ class Board:
         self.dwg['width'] = w * svgwrite.mm
         self.dwg['height'] = h * svgwrite.mm
 
-    def rect(self, size, origin=(0,0), **kw):
+    def rect(self, size, origin=(0,0), centerx=False, centery=False, **kw):
+        x, y = origin
         w, h = size
-        self.poly([(0, 0), (w, 0), (w, h), (0, h)], origin)
+        if centerx: x -= w / 2
+        if centery: y -= h / 2
+        self.poly([(0, 0), (w, 0), (w, h), (0, h)], (x, y))
 
     def poly(self, points, origin=(0,0), **kw):
         points = map(lambda x: self.pos(x, origin), points)
