@@ -31,8 +31,10 @@ class Board:
 
     def rect(self, size, origin=(0,0), centerx=False, centery=False, **kw):
         w, h = size
-        if centerx: origin[0] -= w / 2
-        if centery: origin[1] -= h / 2
+        x, y = origin
+        if centerx: x -= w / 2
+        if centery: x -= h / 2
+        origin = x, y
         self.poly([(0, 0), (w, 0), (w, h), (0, h)], origin)
 
     def poly(self, points, origin=(0,0), **kw):

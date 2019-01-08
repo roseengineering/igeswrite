@@ -108,7 +108,9 @@ class Iges:
 
     def xzplane(self, size, origin=(0,0,0), centerx=False):        
         w, h = size
-        if centerx: origin[0] -= w / 2
+        x, y, z = origin
+        if centerx: x -= w / 2
+        origin = x, y, z
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -124,7 +126,9 @@ class Iges:
 
     def yzplane(self, size, origin=(0,0,0), centery=False):
         w, h = size
-        if centery: origin[1] -= h / 2
+        x, y, z = origin
+        if centery: y -= h / 2
+        origin = x, y, z
         directrix = self.line([0,0,0,0,w,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -140,8 +144,10 @@ class Iges:
 
     def plane(self, size, origin=(0,0,0), centerx=False, centery=False):        
         w, h = size
-        if centerx: origin[0] -= w / 2
-        if centery: origin[1] -= h / 2
+        x, y, z = origin
+        if centerx: x -= w / 2
+        if centery: y -= h / 2
+        origin = x, y, z
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1] + h, origin[2]], child=True)
