@@ -106,8 +106,9 @@ class Iges:
         points = self.pos(points, origin)
         return self.entity(110, points, child=child)
 
-    def xzplane(self, size, origin=(0,0,0)):        
+    def xzplane(self, size, origin=(0,0,0), centerx=False):        
         w, h = size
+        if centerx: origin[0] -= w / 2
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -121,8 +122,9 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
-    def yzplane(self, size, origin=(0,0,0)):        
+    def yzplane(self, size, origin=(0,0,0), centery=False):
         w, h = size
+        if centery: origin[1] -= h / 2
         directrix = self.line([0,0,0,0,w,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1], origin[2] + h], child=True)
@@ -137,11 +139,9 @@ class Iges:
         self.entity(144, [surface, 1, 0, curve])
 
     def plane(self, size, origin=(0,0,0), centerx=False, centery=False):        
-        x, y, z = origin
         w, h = size
-        if centerx: x -= w / 2
-        if centery: y -= h / 2
-        origin = (x, y, z)
+        if centerx: origin[0] -= w / 2
+        if centery: origin[1] -= h / 2
         directrix = self.line([0,0,0,w,0,0], origin, child=True)
         surface = self.entity(122, [directrix,
             origin[0], origin[1] + h, origin[2]], child=True)
