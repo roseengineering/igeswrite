@@ -11,7 +11,7 @@ er = 4.2        # loss tangent is .017
 h = 1.6         # height of the board
 w, l = 30, 27.5 # length and width of patch
 zw = 3.1        # width of 50 ohm line
-zl = 34         # halfwave (before I used 34.25)
+zl = 34.5       # halfwave (before I used 34.25)
 
 # info
 line = -l / 2  
