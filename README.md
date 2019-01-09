@@ -88,16 +88,11 @@ iges.write()
 ## boardsvg
 
 The boardsvg library generates svg files for say an vinyl cutter.
-For example ![patch_svg.py](patch_svg.py) generates the following svg file:
+For example ![stub.py](stub.py) generates the following svg file:
 
-![](patch_svg.svg)
+![](stub.svg)
 
-After unioning all rectangles in this file in inkscape to remove the line crossings,
-I got the following result for vinyl cutting.  
-
-![](union.svg)
-
-You can use Path > Stroke to Path in Inkscape to remove the fill and see the cutting pattern.
-
-![](stroke.svg)
+After Path > Unioning all rectangles in this file in inkscape to remove the line crossings, I used the result to vinyl cut.  
+You can use Path > Stroke to Path in Inkscape to remove the fill and 
+see the cutting pattern, but when vinyl cutting it cut but outlines.
 
