@@ -94,5 +94,5 @@ For example ![stub.py](stub.py) generates the following svg file:
 
 After Path > Unioning all rectangles in this file in inkscape to remove the line crossings, I used the result to vinyl cut.  
 You can use Path > Stroke to Path in Inkscape to remove the fill and 
-see the cutting pattern, but when vinyl cutting it cut twice - cutting both outlines, inner and outer.
+see the cutting pattern, but when vinyl cutting it cut twice - cutting both outlines, inner and outer of the stroke.
 
