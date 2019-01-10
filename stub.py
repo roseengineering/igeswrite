@@ -16,7 +16,7 @@ zl = 34.5       # halfwave (before I used 34.25)
 # info
 line = -l / 2  
 line += 25
-sd = 26   # 22
+sd = 25   # 22
 sl = 9   # 11.5
 
 board = Board()
