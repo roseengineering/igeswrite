@@ -77,15 +77,34 @@ class Iges:
             code, pline, 0, 0, 0, 0, 0, 0, status, dline) +
             "{:>8s}{:8d}{:8d}{:8d}{:8d}{:8d}{:8d}{:8s}{:8d}D{:7d}\n".format(
             code, 1, 0, 1, 0, 0, 0, label, 0, dline + 1))
-        self.update("P", [code] + params, index=dline)
+        self.update("P", [code] + list(params), index=dline)
         self.lineno["D"] = dline + 1
         return dline
 
     def pos(self, pt, origin):
-        return [
-            pt[0] + origin[0], pt[1] + origin[1], + pt[2] + origin[2],
-            pt[3] + origin[0], pt[4] + origin[1], + pt[5] + origin[2]
-        ]
+        x, y, z = origin
+        return (pt[0] + x, pt[1] + y, + pt[2] + z)
+
+    def origin(self, size, origin, centerx=False, centery=False):
+        w, h = size
+        x, y, z = origin
+        if centerx: x -= w / 2
+        if centery: y -= h / 2
+        return x, y, z
+
+    def mapping(self, points, origin):
+        start = points[-1]
+        refs = []
+        for p in points:
+            refs.append(self.line(start, p, origin, child=True))
+            start = p
+        return self.entity(102, [len(refs)] + refs, child=True) 
+
+    def surface(self, directrix, vector, points, origin):
+        surface = self.entity(122, [directrix] + list(vector), child=True)
+        mapping = self.mapping(points, origin)
+        curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
+        self.entity(144, [surface, 1, 0, curve])
 
     ################
 
@@ -102,64 +121,39 @@ class Iges:
             self.lineno['D'], self.lineno['P'], "", 1))
         if filename: f.close()
 
-    def line(self, points, origin=(0,0,0), child=False):
-        points = self.pos(points, origin)
-        return self.entity(110, points, child=child)
+    def line(self, start, end, origin=(0,0,0), child=False):
+        start = self.pos(start, origin)
+        end = self.pos(end, origin)
+        return self.entity(110, start + end, child=child)
 
-    def xzplane(self, size, origin=(0,0,0), centerx=False):        
+    def xzplane(self, size, origin=(0,0,0)):
         w, h = size
         x, y, z = origin
-        if centerx: x -= w / 2
-        origin = x, y, z
-        directrix = self.line([0,0,0,w,0,0], origin, child=True)
-        surface = self.entity(122, [directrix,
-            origin[0], origin[1], origin[2] + h], child=True)
-        refs = [
-            self.line([0,0,0,w,0,0], origin, child=True),
-            self.line([w,0,0,w,0,h], origin, child=True),
-            self.line([w,0,h,0,0,h], origin, child=True),
-            self.line([0,0,h,0,0,0], origin, child=True)
-        ]
-        mapping = self.entity(102, [len(refs)] + refs, child=True) 
-        curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
-        self.entity(144, [surface, 1, 0, curve])
+        points = [(w, 0, 0), (w, 0, h), (0, 0, h), (0, 0, 0)]
+        directrix = self.line((0, 0, 0), (w, 0, 0), origin, child=True)
+        self.surface(directrix, (x, y, z + h), points, origin)
 
-    def yzplane(self, size, origin=(0,0,0), centery=False):
+    def yzplane(self, size, origin=(0,0,0)):
         w, h = size
         x, y, z = origin
-        if centery: y -= h / 2
-        origin = x, y, z
-        directrix = self.line([0,0,0,0,w,0], origin, child=True)
-        surface = self.entity(122, [directrix,
-            origin[0], origin[1], origin[2] + h], child=True)
-        refs = [
-            self.line([0,0,0,0,w,0], origin, child=True),
-            self.line([0,w,0,0,w,h], origin, child=True),
-            self.line([0,w,h,0,0,h], origin, child=True),
-            self.line([0,0,h,0,0,0], origin, child=True)
-        ]
-        mapping = self.entity(102, [len(refs)] + refs, child=True) 
-        curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
-        self.entity(144, [surface, 1, 0, curve])
+        points = [(0, w, 0), (0, w, h), (0, 0, h), (0, 0, 0)]
+        directrix = self.line((0, 0, 0), (0, w, 0), origin, child=True)
+        self.surface(directrix, (x, y, z + h), points, origin)
 
-    def plane(self, size, origin=(0,0,0), centerx=False, centery=False):        
+    def plane(self, size, origin=(0,0,0), **kw):
         w, h = size
+        x, y, z = origin = self.origin(size, origin, **kw)
+        points = [(w, 0, 0), (w, h, 0), (0, h, 0), (0, 0, 0)]
+        directrix = self.line((0, 0, 0), (w, 0, 0), origin, child=True)
+        self.surface(directrix, (x, y + h, z), points, origin)
+
+    def wedge(self, w, h, origin=(0,0,0), flipx=False):
         x, y, z = origin
-        if centerx: x -= w / 2
-        if centery: y -= h / 2
+        if flipx: w, x = -w, x + w
         origin = x, y, z
-        directrix = self.line([0,0,0,w,0,0], origin, child=True)
-        surface = self.entity(122, [directrix,
-            origin[0], origin[1] + h, origin[2]], child=True)
-        refs = [
-            self.line([0,0,0,w,0,0], origin, child=True),
-            self.line([w,0,0,w,h,0], origin, child=True),
-            self.line([w,h,0,0,h,0], origin, child=True),
-            self.line([0,h,0,0,0,0], origin, child=True)
-        ]
-        mapping = self.entity(102, [len(refs)] + refs, child=True) 
-        curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
-        self.entity(144, [surface, 1, 0, curve])
+        points = [(0, 0, 0), (w, 0, 0), (w, h, 0)]
+        directrix = self.line((0, 0, 0), (w, 0, 0), origin, child=True)
+        self.surface(directrix, (x, y + h, z), points, origin)
 
     def cube(self, size, origin=(0,0,0)):
         w, l, h = size
