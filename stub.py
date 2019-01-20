@@ -22,7 +22,7 @@ sl = 9   # 11.5
 board = Board()
 iges = Iges()
 
-board.initialize(size=(bw, bh), viewport=(-cx, -cy), rotate=True)
+board.init(size=(bw, bh), origin=(-cx, -cy), rotate=True)
 iges.cube((bw, bh, -h), origin=(-cx, -cy, 0))
 
 # patch

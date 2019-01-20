@@ -6,7 +6,7 @@ class Board:
 
     def pos(self, pos, origin=(0, 0)):
         k = 3.779527559
-        vx, vy = self.viewport
+        vx, vy = self.origin
         x = pos[0] + origin[0] - vx
         y = pos[1] + origin[1] - vy
         if self.flip: y = self.size[1] - y
@@ -14,17 +14,17 @@ class Board:
         return (k * x, k * y)
 
     def __init__(self, **kw):
-        self.initialize(**kw)
+        self.init(**kw)
 
     ############
 
-    def initialize(self, viewport=(0,0), size=(100,100), flip=False, rotate=False):
+    def init(self, origin=(0,0), size=(100,100), flip=False, rotate=False):
         w, h = size
         self.dwg = svgwrite.Drawing(profile='tiny')
         self.flip = flip
         self.rotate = rotate
         self.size = size
-        self.viewport = viewport
+        self.origin = origin 
         if rotate: w, h = h, w
         self.dwg['width'] = w * svgwrite.mm
         self.dwg['height'] = h * svgwrite.mm
