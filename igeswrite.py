@@ -1,5 +1,5 @@
 
-import sys
+import sys, math
 
 def hollerith(s):
     return "{}H{}".format(len(s), s)
@@ -106,6 +106,9 @@ class Iges:
         curve = self.entity(142, [1, surface, 0, mapping, 2], child=True)
         self.entity(144, [surface, 1, 0, curve])
 
+    def cylinder(self, directrix, vector, origin):
+        self.entity(120, [directrix, vector, 0, 2 * math.pi])
+
     ################
 
     def write(self, filename=None):
@@ -164,5 +167,24 @@ class Iges:
         self.yzplane((l, h), origin=(x + w, y, z))
         self.xzplane((w, h), origin=origin)
         self.xzplane((w, h), origin=(x, y + l, z))
+
+    def yslabline(self, length, rad, origin=(0,0,0)):
+        directrix = self.line((0, 0, 0), (0, 1, 0), origin, child=True)
+        vector = self.line((0, 0, 0), (0, 0, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+        vector = self.line((0, length, 0), (0, length, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+        vector = self.line((0, 0, rad), (0, length, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+
+    def xslabline(self, length, rad, origin=(0,0,0)):
+        directrix = self.line((0, 0, 0), (1, 0, 0), origin, child=True)
+        vector = self.line((0, 0, 0), (0, 0, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+        vector = self.line((length, 0, 0), (length, 0, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+        vector = self.line((0, 0, rad), (length, 0, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+
 
 

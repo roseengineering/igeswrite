@@ -31,6 +31,8 @@ Iges.plane(self, (w, h), origin=(0,0,0))
     - w, h is the width and height of the plane in 2D
 Iges.cube(self, (w, l, h), origin=(0,0,0))
     - w, l, h is the width, length and height of the cube in 3D
+Iges.xslabline(self, length, radius, origin=(0,0,0))
+Iges.yslabline(self, length, radius, origin=(0,0,0))
 ```
 
 See the files microstrip.py and patch.py for examples.
