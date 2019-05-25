@@ -53,8 +53,8 @@ class Iges:
             "15",        # 11 number of significant digits in double
             "6HNoname",  # 12 product id of receiving system
             "1.00",      # 13 model space scale
-            "6",         # 14 units flag (m)
-            "1HM",       # 15 units name
+            "6",         # 14 units flag (2=mm, 6=m)
+            "1HM",       # 15 units name (2HMM)
             "1",         # 16 number of line weight graduations
             "1.00",      # 17 width of max line weight
             "15H20181210.181412",  # 18 file generation time
