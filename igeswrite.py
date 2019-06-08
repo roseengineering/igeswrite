@@ -186,5 +186,15 @@ class Iges:
         vector = self.line((0, 0, rad), (length, 0, rad), origin, child=True)
         self.cylinder(directrix, vector, origin)
 
+    def ypipe(self, length, rad, origin=(0,0,0)):
+        directrix = self.line((0, 0, 0), (0, 1, 0), origin, child=True)
+        vector = self.line((0, 0, rad), (0, length, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+
+    def xpipe(self, length, rad, origin=(0,0,0)):
+        directrix = self.line((0, 0, 0), (1, 0, 0), origin, child=True)
+        vector = self.line((0, 0, rad), (length, 0, rad), origin, child=True)
+        self.cylinder(directrix, vector, origin)
+
 
 
